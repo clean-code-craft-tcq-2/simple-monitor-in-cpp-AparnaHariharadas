@@ -3,12 +3,11 @@
 using namespace std;
 
 bool everythingIsInRange(float actualValue, float lowerLimit, float upperLimit){
-  {
-    if(temperature > upperLimit){
+    if(actualValue > upperLimit){
      
       return false;
     
-    }else (actualValue != NULL && actualValue < lowerLimit){
+    }else if (actualValue != NULL && actualValue < lowerLimit){
       
       return false;
       
