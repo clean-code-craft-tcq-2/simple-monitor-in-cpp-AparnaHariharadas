@@ -12,10 +12,10 @@ bool everythingIsInRange(float actualValue, float lowerLimit, float upperLimit){
 
 bool batteryIsOk(float temperature, float soc, float chargeRate) {
   bool batteryHealthIsGood = true;
-  char paramName = ["Temperature", "State_Out_Charge", [ChargeRate"];
-  float paramActual = [temperature, soc, chargeRate];
-  float paramLowerLim =  [0, 20 , 0.0];
-  float paramUpperLim =  [45, 80 , 0.8];
+  char paramName[3] = {"Temperature", "State_Out_Charge", "ChargeRate"};
+  float paramActual[3] = {temperature, soc, chargeRate};
+  float paramLowerLim[3] =  {0, 20 , 0.0};
+  float paramUpperLim[3] =  {45, 80 , 0.8};
   for(int i = 0; i<+2 ;i++){
       if(!everythingIsInRange(paramActual[i], paramLowerLim[i], paramUpperLim[i])){
           batteryHealthIsGood = false;
