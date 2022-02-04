@@ -14,18 +14,15 @@ bool batteryIsOk(float temperature, float soc, float chargeRate) {
   bool batteryHealthIsGood = true;
   if(!(everythingIsInRange(temperature, 0, 45))) {
     cout << "Temperature out of range!\n";
-      //batteryHealthIsGood = false;
-      return false;
-   } else if(!(everythingIsInRange(soc, 20 , 80))){
+    batteryHealthIsGood = false;
+     } else if(!(everythingIsInRange(soc, 20 , 80))){
     cout << "State of Charge out of range!\n";
-    //batteryHealthIsGood = false;
-    return false;
+    batteryHealthIsGood = false;
   } else if(!(everythingIsInRange(chargeRate, 0.0 , 0.8))) {
-    //batteryHealthIsGood = false;
+    batteryHealthIsGood = false;
     cout << "Charge Rate out of range!\n";
-    return false;
   }
-  //return batteryHealthIsGood;
+  return batteryHealthIsGood;
 }
 
 int main() {
