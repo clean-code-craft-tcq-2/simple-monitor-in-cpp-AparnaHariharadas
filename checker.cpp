@@ -3,14 +3,10 @@
 using namespace std;
 
 bool everythingIsInRange(float actualValue, float lowerLimit, float upperLimit){
-    if(actualValue > upperLimit){
+    if(actualValue > upperLimit || actualValue < lowerLimit){
      
       return false;
     
-    }else if (actualValue != NULL && actualValue < lowerLimit){
-      
-      return false;
-      
     }
   }
 
