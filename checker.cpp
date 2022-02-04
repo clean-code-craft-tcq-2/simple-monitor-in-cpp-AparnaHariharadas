@@ -3,12 +3,12 @@
 using namespace std;
 
 bool everythingIsInRange(float actualValue, float lowerLimit, float upperLimit){
-    if(actualValue > upperLimit || actualValue < lowerLimit){
+    bool actualValueOk = true;
+    if(actualValue < lowerLimit || actualValue > upperLimit)
+        actualValueOk = false;
      
-      return false;
-    
-    }
-  }
+      return actualValueOk;
+   }
 
 bool batteryIsOk(float temperature, float soc, float chargeRate) {
   bool batteryHealthIsGood = true;
