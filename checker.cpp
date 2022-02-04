@@ -12,7 +12,7 @@ bool everythingIsInRange(float actualValue, float lowerLimit, float upperLimit){
 
 bool batteryIsOk(float temperature, float soc, float chargeRate) {
   bool batteryHealthIsGood = true;
-  char paramName[3] = {"Temperature", "State_Out_Charge", "ChargeRate"};
+  string paramName[3] = {"Temperature", "State_Out_Charge", "ChargeRate"};
   float paramActual[3] = {temperature, soc, chargeRate};
   float paramLowerLim[3] =  {0, 20 , 0.0};
   float paramUpperLim[3] =  {45, 80 , 0.8};
