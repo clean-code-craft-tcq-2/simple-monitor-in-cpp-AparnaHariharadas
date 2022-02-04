@@ -12,7 +12,25 @@ bool everythingIsInRange(float actualValue, float lowerLimit, float upperLimit){
 
 bool batteryIsOk(float temperature, float soc, float chargeRate) {
   bool batteryHealthIsGood = true;
-  if(!(everythingIsInRange(temperature, 0, 45))) {
+  char paramName = ["Temperature", "State_Out_Charge", [ChargeRate"];
+  float paramActual = [temperature, soc, chargeRate];
+  float paramLowerLim =  [0, 20 , 0.0];
+  float paramUpperLim =  [45, 80 , 0.8];
+  for(int i = 0; i<+2 ;i++){
+      if(!everythingIsInRange(paramActual[i], paramLowerLim[i], paramUpperLim[i])){
+          batteryHealthIsGood = false;
+          cout << paramName[i] <<" out of range!\n";
+      }
+  }
+ return batteryHealthIsGood;
+}
+      
+                                                            
+                                                        
+                                                        
+                                                    
+                                                        
+  /*if(!(everythingIsInRange(temperature, 0, 45))) {
     cout << "Temperature out of range!\n";
     batteryHealthIsGood = false;
      } else if(!(everythingIsInRange(soc, 20 , 80))){
@@ -23,7 +41,7 @@ bool batteryIsOk(float temperature, float soc, float chargeRate) {
     cout << "Charge Rate out of range!\n";
   }
   return batteryHealthIsGood;
-}
+}*/
 
 int main() {
   assert(batteryIsOk(25, 70, 0.7) == true);
