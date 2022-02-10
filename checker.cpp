@@ -2,7 +2,14 @@
 #include <iostream>
 using namespace std;
 
-bool everythingIsInRange(float actualValue, float lowerLimit, float upperLimit){
+#define TEMP_UPPER_LIMIT 45.0
+#define TEMP_LOWER_LIMIT 0.0
+#define SOC_UPPER_LIMIT 80.0
+#define SOC_LOWER_LIMIT 20.0
+#define CHARGERATE_UPPER_LIMIT 0.8
+#define CHARGERATE_LOWER_LIMIT 0.0
+
+bool checkBatteryHealthParametersInRange(float actualValue, float lowerLimit, float upperLimit){
     bool actualValueOk = true;
     if(actualValue < lowerLimit || actualValue > upperLimit)
         actualValueOk = false;
@@ -10,18 +17,28 @@ bool everythingIsInRange(float actualValue, float lowerLimit, float upperLimit){
       return actualValueOk;
    }
 
+bool checkTemperature(float temperature)
+{
+    return (checkBatteryHealthParametersInRange(temperature,TEMP_LOWER_LIMIT,TEMP_UPPER_LIMIT));
+}
+
+bool checkSOC(float soc)
+{
+    return (checkBatteryHealthParametersInRange(soc, SOC_LOWER_LIMIT,SOC_UPPER_LIMIT));
+}
+
+bool checkChargeRate(float chargeRate)
+{
+    return (checkBatteryHealthParametersInRange(chargeRate, CHARGERATE_LOWER_LIMIT,CHARGERATE_UPPER_LIMIT));
+}
+
 bool batteryIsOk(float temperature, float soc, float chargeRate) {
   bool batteryHealthIsGood = true;
-  string paramName[3] = {"Temperature", "State_Out_Charge", "ChargeRate"};
-  float paramActual[3] = {temperature, soc, chargeRate};
-  float paramLowerLim[3] =  {0, 20 , 0.0};
-  float paramUpperLim[3] =  {45, 80 , 0.8};
-  for(int i = 0; i<+2 ;i++){
-      if(!everythingIsInRange(paramActual[i], paramLowerLim[i], paramUpperLim[i])){
-          batteryHealthIsGood = false;
+  batteryHealthIsGood = checkTemperature(temperature) && checkSOC(soc) && checkChargeRate(chargeRate);
+  
+     /* if(!batteryHealthIsGood){
           cout << paramName[i] <<" out of range!\n";
-      }
-  }
+      }*/
  return batteryHealthIsGood;
 }
       
