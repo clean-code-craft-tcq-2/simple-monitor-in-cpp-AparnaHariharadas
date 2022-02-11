@@ -25,6 +25,6 @@ class batteryManagementClass
  {
   struct batteryManagementRange paramName;
   };
-  bool checkBatteryHealthParametersInRange() = 0;
+  bool checkBatteryHealthParametersInRange(parameters parameter);
  };
 
