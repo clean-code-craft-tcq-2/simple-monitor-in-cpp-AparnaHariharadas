@@ -1,6 +1,6 @@
 #include "batterManagementSystem.h"
 
-bool batteryManagementClass::checkBatteryHealthParametersInRange(parameters parameter){
+bool batteryManagementClass::checkBatteryHealthParametersInRange(batteryManagementClass::parameters parameter){
     bool actualValueOk = true;
     if(parameter.param.actualValue < parameter.param.lLimit || parameter.param.actualValue > parameter.param.hLimit)
         actualValueOk = false;
@@ -18,7 +18,7 @@ bool batteryIsOk(float *value) {
         para.param.actualValue = value[i];
         para.param.lLimit = lowerLimit[i];
         para.param.hLimit = upperLimit[i];
-        batteryHealthIsGood[i] = batteryManagementClass::checkBatteryHealthParametersInRange(parameter);
+        batteryHealthIsGood[i] = batteryManagementClass::checkBatteryHealthParametersInRange(para);
         if (batteryHealthIsGood[i] == false){
             cout << para.param.paramName <<" out of range!\n";
             return false;
