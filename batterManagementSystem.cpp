@@ -18,7 +18,7 @@ bool batteryIsOk(float *value) {
         para.param.actualValue = value[i];
         para.param.lLimit = lowerLimit[i];
         para.param.hLimit = upperLimit[i];
-        batteryHealthIsGood[i] = checkBatteryHealthParametersInRange(parameter);
+        batteryHealthIsGood[i] = batteryManagementClass::checkBatteryHealthParametersInRange(parameter);
         if (batteryHealthIsGood[i] == false){
             cout << para.param.paramName <<" out of range!\n";
             return false;
