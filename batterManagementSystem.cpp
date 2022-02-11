@@ -2,7 +2,7 @@
 
 bool batteryManagementClass::checkBatteryHealthParametersInRange(parameters parameter){
     bool actualValueOk = true;
-    if(parameter.actualValue < parameter.lLimit || parameter.actualValue > parameter.hLimit)
+    if(parameter.paramName.actualValue < parameter.paramName.lLimit || parameter.paramName.actualValue > parameter.paramName.hLimit)
         actualValueOk = false;
      
       return actualValueOk;
