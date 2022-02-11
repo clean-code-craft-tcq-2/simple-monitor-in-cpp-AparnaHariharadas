@@ -14,10 +14,10 @@ bool batteryIsOk(float *value) {
     struct batteryManagementClass::parameters para;
     for (int i = 0; i < 3; i++)
     {
-        para.param.paramName = parameterNames[i]
-        para.param.actualValue = value[i]
-        para.param.lLimit = lowerLimit[i]
-        para.param.hLimit = upperLimit[i]
+        para.param.paramName = parameterNames[i];
+        para.param.actualValue = value[i];
+        para.param.lLimit = lowerLimit[i];
+        para.param.hLimit = upperLimit[i];
         batteryHealthIsGood[i] = checkBatteryHealthParametersInRange(parameter);
         if (batteryHealthIsGood[i] == false){
             cout << para.param.paramName <<" out of range!\n";
