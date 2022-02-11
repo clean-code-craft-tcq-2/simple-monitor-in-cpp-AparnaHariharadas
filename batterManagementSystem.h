@@ -15,6 +15,7 @@ string parameterNames[3] = {"Temperature", "SOC", "ChargeRate"};
 class batteryManagementClass
 {
 
+ public: 
  struct batteryManagementRange
  {
   float lLimit;
