@@ -1,6 +1,6 @@
 #include "batterManagementSystem.h"
 
-bool checkBatteryHealthParametersInRange(batteryManagementStucture parameter){
+bool batteryManagementClass::checkBatteryHealthParametersInRange(batteryManagementStucture parameter){
     bool actualValueOk = true;
     if(parameter.actualValue < parameter.lLimit || parameter.actualValue > parameter.hLimit)
         actualValueOk = false;
@@ -8,27 +8,28 @@ bool checkBatteryHealthParametersInRange(batteryManagementStucture parameter){
       return actualValueOk;
    }
 
-/*bool checkTemperature(float temperature)
-{
-    return (checkBatteryHealthParametersInRange(temperature,TEMP_LOWER_LIMIT,TEMP_UPPER_LIMIT));
-}
 
-bool checkSOC(float soc)
-{
-    return (checkBatteryHealthParametersInRange(soc, SOC_LOWER_LIMIT,SOC_UPPER_LIMIT));
-}
+bool batteryIsOk(float *value) {
+    bool batteryHealthIsGood[3] = {true};
+    struct parameters para;
+    for (int i = 0; i < 3; i++)
+    {
+        para.paramName = parameterNames[i]
+        para.paramName.actualValue = value[i]
+        para.paramName.lLimit = lowerLimit[i]
+        para.paramName.hLimit = upperLimit[i]
+        batteryHealthIsGood[i] = checkBatteryHealthParametersInRange(parameter);
+        if (batteryHealthIsGood[i] == false){
+            cout << para.paramName <<" out of range!\n";
+            return false;
+        }
+      return true;       
+    }
 
-bool checkChargeRate(float chargeRate)
-{
-    return (checkBatteryHealthParametersInRange(chargeRate, CHARGERATE_LOWER_LIMIT,CHARGERATE_UPPER_LIMIT));
-}*/
-
-bool batteryIsOk(batteryManagementStucture parameter) {
-  bool batteryHealthIsGood = true;
-  batteryHealthIsGood = checkBatteryHealthParametersInRange(parameter);
-  
-     /* if(!batteryHealthIsGood){
-          cout << paramName[i] <<" out of range!\n";
-      }*/
  return batteryHealthIsGood;
+}
+
+ int main() {
+    float values[3] = {25, 70, 0.7};
+    assert(batteryIsOk(*values) == true);
 }
