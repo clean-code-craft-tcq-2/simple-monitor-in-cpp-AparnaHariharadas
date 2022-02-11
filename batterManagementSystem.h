@@ -16,6 +16,7 @@ struct batteryManagementRange
  float lLimit;
  float hLimit;
  float actualValue;
+ char paramName;
 }
  
  bool checkBatteryHealthParametersInRange() = 0;
