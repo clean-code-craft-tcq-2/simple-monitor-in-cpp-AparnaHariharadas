@@ -11,7 +11,7 @@ bool batteryManagementClass::checkBatteryHealthParametersInRange(parameters para
 
 bool batteryIsOk(float *value) {
     bool batteryHealthIsGood[3] = {true};
-    struct parameters para;
+    struct batteryManagementClass::parameters para;
     for (int i = 0; i < 3; i++)
     {
         para.paramName = parameterNames[i]
@@ -31,5 +31,5 @@ bool batteryIsOk(float *value) {
 
  int main() {
     float values[3] = {25, 70, 0.7};
-    assert(batteryIsOk(*values) == true);
+    assert(batteryIsOk(values[]) == true);
 }
