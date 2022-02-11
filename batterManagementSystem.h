@@ -20,10 +20,11 @@ class batteryManagementClass
   float lLimit;
   float hLimit;
   float actualValue;
+  char paramName;
  };
  struct parameters
  {
-  struct batteryManagementRange paramName;
+  struct batteryManagementRange param;
   };
   bool checkBatteryHealthParametersInRange(parameters parameter);
  };
