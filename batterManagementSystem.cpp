@@ -1,14 +1,14 @@
 #include "batterManagementSystem.h"
 
-bool checkBatteryHealthParametersInRange(float actualValue, float lowerLimit, float upperLimit){
+bool checkBatteryHealthParametersInRange(batteryManagementStucture parameter){
     bool actualValueOk = true;
-    if(actualValue < lowerLimit || actualValue > upperLimit)
+    if(parameter.actualValue < parameter.lLimit || parameter.actualValue > parameter.hLimit)
         actualValueOk = false;
      
       return actualValueOk;
    }
 
-bool checkTemperature(float temperature)
+/*bool checkTemperature(float temperature)
 {
     return (checkBatteryHealthParametersInRange(temperature,TEMP_LOWER_LIMIT,TEMP_UPPER_LIMIT));
 }
@@ -21,11 +21,11 @@ bool checkSOC(float soc)
 bool checkChargeRate(float chargeRate)
 {
     return (checkBatteryHealthParametersInRange(chargeRate, CHARGERATE_LOWER_LIMIT,CHARGERATE_UPPER_LIMIT));
-}
+}*/
 
-bool batteryIsOk(float temperature, float soc, float chargeRate) {
+bool batteryIsOk(batteryManagementStucture parameter) {
   bool batteryHealthIsGood = true;
-  batteryHealthIsGood = checkTemperature(temperature) && checkSOC(soc) && checkChargeRate(chargeRate);
+  batteryHealthIsGood = checkBatteryHealthParametersInRange(parameter);
   
      /* if(!batteryHealthIsGood){
           cout << paramName[i] <<" out of range!\n";
