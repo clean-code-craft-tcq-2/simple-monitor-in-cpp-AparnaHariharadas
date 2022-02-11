@@ -1,6 +1,6 @@
 #include "batterManagementSystem.h"
 
-bool batteryManagementClass::checkBatteryHealthParametersInRange(batteryManagementStucture parameter){
+bool batteryManagementClass::checkBatteryHealthParametersInRange(parameters parameter){
     bool actualValueOk = true;
     if(parameter.actualValue < parameter.lLimit || parameter.actualValue > parameter.hLimit)
         actualValueOk = false;
