@@ -8,12 +8,20 @@ using namespace std;
 #define SOC_LOWER_LIMIT 20.0
 #define CHARGERATE_UPPER_LIMIT 0.8
 #define CHARGERATE_LOWER_LIMIT 0.0
-
-class batteryManagementStucture
+#define NO_OF_PARAMETERS 3
+class batteryManagementClass
 {
-struct range
+struct batteryManagementRange
 {
-int low;
-int high;
+ float lLimit;
+ float hLimit;
+ float actualValue;
 }
- bool checkBatteryHealthParametersInRange(float actualValue, float lowerLimit, float upperLimit);
+ 
+ bool checkBatteryHealthParametersInRange() = 0;
+}
+
+batteryManagementStucture checkTemperatureRange[NO_OF_PARAMETERS]={0};
+batteryManagementStucture checkSOCRange[NO_OF_PARAMETERS]={0};
+batteryManagementStucture checkChangeRateRange[NO_OF_PARAMETERS]={0};
+
