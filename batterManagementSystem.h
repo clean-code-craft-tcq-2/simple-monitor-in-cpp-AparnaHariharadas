@@ -21,7 +21,7 @@ struct batteryManagementRange
  bool checkBatteryHealthParametersInRange() = 0;
 }
 
-batteryManagementStucture checkTemperatureRange[NO_OF_PARAMETERS]={0};
-batteryManagementStucture checkSOCRange[NO_OF_PARAMETERS]={0};
-batteryManagementStucture checkChangeRateRange[NO_OF_PARAMETERS]={0};
+batteryManagementStucture isParametersInRange[NO_OF_PARAMETERS]={0};
+//batteryManagementStucture checkSOCRange[NO_OF_PARAMETERS]={0};
+//batteryManagementStucture checkChangeRateRange[NO_OF_PARAMETERS]={0};
 
