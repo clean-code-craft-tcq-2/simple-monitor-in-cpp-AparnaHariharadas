@@ -11,7 +11,7 @@ using namespace std;
 #define NO_OF_PARAMETERS 3
 float lowerLimit[3] = {0.0,20.0, 0.0};
 float upperLimit[3] = {45.0,80.0, 0.8};
-string parameterNames = {"Temperature", "SOC", "ChargeRate"};
+string parameterNames[3] = {"Temperature", "SOC", "ChargeRate"};
 class batteryManagementClass
 {
 
@@ -20,11 +20,11 @@ class batteryManagementClass
   float lLimit;
   float hLimit;
   float actualValue;
- }
+ };
  struct parameters
  {
   struct batteryManagementRange paramName;
-  }
+  };
   bool checkBatteryHealthParametersInRange() = 0;
- }
+ };
 
