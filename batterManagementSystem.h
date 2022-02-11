@@ -20,7 +20,7 @@ class batteryManagementClass
   float lLimit;
   float hLimit;
   float actualValue;
-  char paramName;
+  string paramName;
  };
  struct parameters
  {
