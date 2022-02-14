@@ -33,7 +33,7 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
     struct batteryManagementClass::parameters para;
     float tempInCelsius;
     string value;
-    getline(temp,value,'#');
+    std::getline(temp,value,'#');
     float temperature = stof(value[0]);
     //stof(temp.substr(0, temp.find("#")));
     string unit = value[1];
