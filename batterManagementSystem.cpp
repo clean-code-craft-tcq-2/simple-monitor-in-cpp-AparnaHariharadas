@@ -35,7 +35,7 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
   
    
     string delim="#";
-    string temperature = stof(temp.substr(0, temp.find(delim)));
+    float temperature = stof(temp.substr(0, temp.find(delim)));
     temp.erase(0, temp.find (delim) + delim.length());
     string unit =  temp; 
     tempInCelsius = convertTempIfInFarenheit(temperature,unit);
