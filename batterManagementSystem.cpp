@@ -16,13 +16,14 @@ float convertFarenheitToCelcius(float tempInFarenheit)
 }
 
 bool batteryIsOk(float temp, float soc, float chargeRate,  char unit) {
-   bool batteryHealthIsGood[3] = {true};
+    bool batteryHealthIsGood[3] = {true};
     struct batteryManagementClass::parameters para;
+    float tempInCelsius;
     if (unit == 'F'){
-            float tempInCelsius = convertFarenheitToCelcius(temp);
-            para.param.paramUnit = "Farenheit";
+        tempInCelsius = convertFarenheitToCelcius(temp);
+        para.param.paramUnit = "Farenheit";
     }else if(unit == 'C'){
-        float tempInCelsius = temp;
+        tempInCelsius = temp;
         para.param.paramUnit = "Celsius";
     }
     
