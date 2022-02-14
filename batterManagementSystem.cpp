@@ -38,5 +38,5 @@ bool batteryIsOk(float *value) {
 
  int main() {
     //float values[3] = {25, 70, 0.7};
-    assert(batteryIsOk(25.0, 70.0, 0.7) == true);
+    assert(batteryIsOk({25.0, 70.0, 0.7}) == true);
 }
