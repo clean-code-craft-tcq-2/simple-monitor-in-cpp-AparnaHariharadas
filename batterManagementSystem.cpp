@@ -25,19 +25,21 @@ float convertFarenheitToCelcius(float tempInFarenheit)
     return ((tempInFarenheit - 32.0)/1.8);
 }
 
-bool batteryIsOk(float temp, float soc, float chargeRate,  char unit) {
+bool batteryIsOk(string temp, float soc, float chargeRate) {
     bool batteryHealthIsGood[3] = {true};
     struct batteryManagementClass::parameters para;
     float tempInCelsius;
-    if (unit == 'F'){
+    float temperature = (float)s.substr(0, s.find("#"));
+    string unit = s.substr(1, s.find("#"));
+    /*if (unit == 'F'){
         tempInCelsius = convertFarenheitToCelcius(temp);
         para.param.paramUnit = "Farenheit";
     }else if(unit == 'C'){
         tempInCelsius = temp;
         para.param.paramUnit = "Celsius";
-    }
-    
-    float paramActuals[4] ={tempInCelsius, soc, chargeRate, unit};
+    }*/
+     cout << temperature << unit;
+    float paramActuals[4] ={tempInCelsius, soc, chargeRate};
     for (int i = 0; i < 3; i++)
     {        
         para.param.paramName = parameterNames[i];
@@ -62,7 +64,7 @@ bool batteryIsOk(float temp, float soc, float chargeRate,  char unit) {
 
  int main() {
      
-     assert(batteryIsOk(25.0, 70.0, 0.7, 'C') == true);
-     assert(batteryIsOk(25.0, 70.0, 0.7, 'F') == false);
-     assert(batteryIsOk(25.0, 60.0, 0.7, 'F') == false);
+     assert(batteryIsOk("25.0#F", 70.0, 0.7) == true);
+     assert(batteryIsOk("25.0#C", 70.0, 0.7) == false);
+     assert(batteryIsOk("25.0#C", 60.0, 0.7) == false);
 }
