@@ -41,8 +41,8 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
     while (ptr != NULL)  
     {  
         string temp[i]= ptr; 
-        ptr = strtok (NULL, " # ");  
-        i=i+1
+        ptr = strtok (NULL, "#");  
+        i=i+1;
     }  
      float temperature = stof(temp[0]);
     //stof(temp.substr(0, temp.find("#")));
