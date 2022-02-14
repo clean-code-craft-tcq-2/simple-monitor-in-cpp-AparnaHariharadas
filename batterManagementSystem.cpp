@@ -15,13 +15,13 @@ float convertFarenheitToCelcius(float tempInFarenheit)
     return ((tempInFarenheit - 32.0)/1.8);
 }
 
-bool batteryIsOk(float temp, float soc, floatvchargeRate,  char unit) {
+bool batteryIsOk(float temp, float soc, float chargeRate,  char unit) {
    bool batteryHealthIsGood[3] = {true};
     struct batteryManagementClass::parameters para;
-    if (unit == "F"){
+    if (unit == 'F'){
             float tempInCelsius = convertFarenheitToCelcius(temp);
             para.param.paramUnit = "Farenheit";
-    }else if(unit == "C"){
+    }else if(unit == 'C'){
         float tempInCelsius = temp;
         para.param.paramUnit = "Celsius";
     }
@@ -49,6 +49,6 @@ bool batteryIsOk(float temp, float soc, floatvchargeRate,  char unit) {
 }
 
  int main() {
-     assert(batteryIsOk(25.0, 70.0, 0.7, "C") == true);
-     assert(batteryIsOk(25.0, 70.0, 0.7, "F") == false);
+     assert(batteryIsOk(25.0, 70.0, 0.7, 'C') == true);
+     assert(batteryIsOk(25.0, 70.0, 0.7, 'F') == false);
 }
