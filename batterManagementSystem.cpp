@@ -34,15 +34,15 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
     float tempInCelsius;
   
    
-    string delim;
+    string delim="#";
     size_t pos = 0;
     //pos = temp.find (delim);
     //float temperature = 25.0;
-    //string temperature = temp.substr(0, temp.find(delim));
+    string temperature = temp.substr(0, temp.find(delim));
     temp.erase(0, temp.find (delim) + delim.length());
    //pos = temp.find (delim))
-    string temperature = temp.substr(temp.find (delim), temp.find(delim));
-    temp.erase(0, pos + delim.length());
+    //string temperature = temp.substr(temp.find (delim), temp.find(delim));
+    //temp.erase(0, pos + delim.length());
     string unit =  temp; 
     //tempInCelsius = convertTempIfInFarenheit(temperature,unit);
     tempInCelsius=25.0;
