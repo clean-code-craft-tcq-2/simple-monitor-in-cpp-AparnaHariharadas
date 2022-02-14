@@ -20,22 +20,22 @@ bool checkBatteryHealthParametersInRange(batteryManagementClass::parameters para
    }
 
 
-float convertTempIfInFarenheit(float tempInFarenheit, string unit)
+float convertTempIfInFarenheit(float temperature, string unit)
 {
-    if unit == "F"
-        return ((tempInFarenheit - 32.0)/1.8);
+    if(unit == "F")
+        return ((temperature - 32.0)/1.8);
     else 
-        return tempInFarenheit;
+        return temperature;
 }
 
 bool batteryIsOk(string temp, float soc, float chargeRate) {
     bool batteryHealthIsGood[3] = {true};
     struct batteryManagementClass::parameters para;
-    float tempInCelsius;
+    //float tempInCelsius;
     //float tempInCelsius = 25.0;
-    tempInCelsius = stof(temp.substr(0, temp.find("#")));
+    float temperature = stof(temp.substr(0, temp.find("#")));
     string unit = temp.substr(1, temp.find("#"));
-    tempInCelsius = convertTempIfInFarenheit(tempInCelsius,unit);
+    tempInCelsius = convertTempIfInFarenheit(temperature,unit);
      cout << tempInCelsius << unit;
     float paramActuals[4] ={tempInCelsius, soc, chargeRate};
     for (int i = 0; i < 3; i++)
