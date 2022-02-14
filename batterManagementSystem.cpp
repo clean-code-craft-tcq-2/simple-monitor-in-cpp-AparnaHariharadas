@@ -6,10 +6,9 @@ void printParametersState(string parameterName, string message){
 
 void CheckParametersForEarlyWarning(batteryManagementClass::parameters parameter)
 {
-
-    if ( parameter.param.actualValue >= parameter.param.lowerWaringLimitmin || parameter.param.actualValue <= parameter.param.lowerWaringLimitmax)
+    if ((parameter.param.actualValue-parameter.param.lowerWaringLimitmin) <= (parameter.param.lowerWaringLimitmax-parameter.param.actualValue))
          printParametersState(parameter.param.paramName, " Lower limit WARNING!\n");
-    else if ( parameter.param.actualValue >= parameter.param.upperWaringLimitmin || parameter.param.actualValue <= parameter.param.upperWaringLimitmax)
+    if ((parameter.param.actualValue-parameter.param.upperWaringLimitmin) <= (parameter.param.upperWaringLimitmax-parameter.param.actualValue))
         printParametersState(parameter.param.paramName, " Upper limit WARNING!\n");
 }
 
@@ -54,8 +53,7 @@ bool batteryIsOk(float temp, float soc, float chargeRate,  char unit) {
             printParametersState(para.param.paramName, " out of range!\n");
             return false;
         }
-        else
-            
+       
       return true;       
     }
 
@@ -63,7 +61,8 @@ bool batteryIsOk(float temp, float soc, float chargeRate,  char unit) {
 }
 
  int main() {
+     
      assert(batteryIsOk(25.0, 70.0, 0.7, 'C') == true);
      assert(batteryIsOk(25.0, 70.0, 0.7, 'F') == false);
-     assert(batteryIsOk(25.0, 60.0, 0.7, 'F') == true);
+     assert(batteryIsOk(25.0, 60.0, 0.7, 'F') == false);
 }
