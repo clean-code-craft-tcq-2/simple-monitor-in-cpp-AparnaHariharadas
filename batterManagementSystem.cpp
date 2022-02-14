@@ -31,8 +31,7 @@ float convertTempIfInFarenheit(float temperature, string unit)
 bool batteryIsOk(string temp, float soc, float chargeRate) {
     bool batteryHealthIsGood[3] = {true};
     struct batteryManagementClass::parameters para;
-    //float tempInCelsius;
-    //float tempInCelsius = 25.0;
+    float tempInCelsius;
     float temperature = stof(temp.substr(0, temp.find("#")));
     string unit = temp.substr(1, temp.find("#"));
     tempInCelsius = convertTempIfInFarenheit(temperature,unit);
