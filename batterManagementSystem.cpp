@@ -43,7 +43,7 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
     string unit =  temp; 
     //tempInCelsius = convertTempIfInFarenheit(temperature,unit);
     tempInCelsius=25.0;
-    cout << tempInCelsius << unit;
+    cout << temperature << "yes" <<unit << "\n";
     float paramActuals[4] ={tempInCelsius, soc, chargeRate};
     for (int i = 0; i < 3; i++)
     {        
