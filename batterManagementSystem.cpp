@@ -1,15 +1,26 @@
 #include "batterManagementSystem.h"
 
-bool checkBatteryHealthParametersInRange(batteryManagementClass::parameters parameter){
-    bool actualValueOk = true;
-    if(parameter.param.actualValue < parameter.param.lLimit || parameter.param.actualValue > parameter.param.hLimit)
-        actualValueOk = false;
-     else if ( parameter.param.actualValue >= parameter.param.lowerWaringLimitmin || parameter.param.actualValue <= parameter.param.lowerWaringLimitmax)
-         cout << parameter.param.paramName <<" Lower limit WARNING!\n";
+void printParametersState(string parameterName, string message){
+    cout << parameterName << message;
+}
+
+void CheckParametersForEarlyWarning(batteryManagementClass::parameters parameter)
+{
+
+    if ( parameter.param.actualValue >= parameter.param.lowerWaringLimitmin || parameter.param.actualValue <= parameter.param.lowerWaringLimitmax)
+         printParametersState(parameter.param.paramName, " Lower limit WARNING!\n");
     else if ( parameter.param.actualValue >= parameter.param.upperWaringLimitmin || parameter.param.actualValue <= parameter.param.upperWaringLimitmax)
-        cout << parameter.param.paramName <<" Upper limit WARNING!\n";
-      return actualValueOk;
+        printParametersState(parameter.param.paramName, " Upper limit WARNING!\n");
+}
+
+bool checkBatteryHealthParametersInRange(batteryManagementClass::parameters parameter){
+    if(parameter.param.actualValue < parameter.param.lLimit || parameter.param.actualValue > parameter.param.hLimit)
+        return false;
+     CheckParametersForEarlyWarning(parameter);
+      return true;
    }
+
+
 float convertFarenheitToCelcius(float tempInFarenheit)
 {
     return ((tempInFarenheit - 32.0)/1.8);
@@ -40,9 +51,11 @@ bool batteryIsOk(float temp, float soc, float chargeRate,  char unit) {
         para.param.upperWaringLimitmax = upperLimit[i];
         batteryHealthIsGood[i] = checkBatteryHealthParametersInRange(para);
         if (batteryHealthIsGood[i] == false){
-            cout << para.param.paramName << para.param.paramUnit <<" out of range!\n";
+            printParametersState(parameter.param.paramName, " out of range!\n");
             return false;
         }
+        else
+            
       return true;       
     }
 
