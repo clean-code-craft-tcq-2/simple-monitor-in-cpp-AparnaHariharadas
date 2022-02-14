@@ -32,8 +32,12 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
     bool batteryHealthIsGood[3] = {true};
     struct batteryManagementClass::parameters para;
     float tempInCelsius;
-    float temperature = stof(temp.substr(0, temp.find("#")));
-    string unit = temp.substr(1, temp.find("#"));
+    string value;
+    getline(temp,value,"#");
+    float temperature = stof(value[0]);
+    //stof(temp.substr(0, temp.find("#")));
+    string unit = value[1];
+        //temp.substr(1, temp.find("#"));
     tempInCelsius = convertTempIfInFarenheit(temperature,unit);
      cout << tempInCelsius << unit;
     float paramActuals[4] ={tempInCelsius, soc, chargeRate};
