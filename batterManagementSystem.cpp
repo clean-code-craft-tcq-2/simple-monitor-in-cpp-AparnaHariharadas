@@ -28,7 +28,7 @@ float convertFarenheitToCelcius(float tempInFarenheit)
 bool batteryIsOk(string temp, float soc, float chargeRate) {
     bool batteryHealthIsGood[3] = {true};
     struct batteryManagementClass::parameters para;
-    float tempInCelsius;
+    //float tempInCelsius;
     float tempInCelsius = 25.0;
      string temperature = temp.substr(0, temp.find("#"));
     string unit = temp.substr(1, temp.find("#"));
