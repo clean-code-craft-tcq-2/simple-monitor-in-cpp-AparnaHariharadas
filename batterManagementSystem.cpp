@@ -23,11 +23,11 @@ bool batteryIsOk(float *value) {
         para.param.hLimit = upperLimit[i];
         para.param.lowerWaringLimitmin = lowerLimit[i];
         para.param.lowerWaringLimitmax = lowerLimit[i] + lowerLimit[i]*0.05 ;
-        para.param.upperWaringLimitmin = upperLimit[i] - upperLimit[i]*0.5;
+        para.param.upperWaringLimitmin = upperLimit[i] - upperLimit[i]*0.05;
         para.param.upperWaringLimitmax = upperLimit[i];
         batteryHealthIsGood[i] = checkBatteryHealthParametersInRange(para);
         if (batteryHealthIsGood[i] == false){
-            cout << para.param.paramName <<" out of range!\n";
+            cout << para.param.paramName << para.param.paramUnit <<" out of range!\n";
             return false;
         }
       return true;       
@@ -37,6 +37,6 @@ bool batteryIsOk(float *value) {
 }
 
  int main() {
-    float values[3] = {25, 70, 0.7};
-    assert(batteryIsOk(values) == true);
+    //float values[3] = {25, 70, 0.7};
+    assert(batteryIsOk(25, 70, 0.7) == true);
 }
