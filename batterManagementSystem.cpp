@@ -28,7 +28,7 @@ float convertTempIfInFarenheit(float temperature, string unit)
         return temperature;
 }
 
-bool batteryIsOk(string temp, float soc, float chargeRate) {
+bool batteryIsOk(stringstream temp, float soc, float chargeRate) {
     bool batteryHealthIsGood[3] = {true};
     struct batteryManagementClass::parameters para;
     float tempInCelsius;
