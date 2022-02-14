@@ -51,7 +51,7 @@ bool batteryIsOk(float temp, float soc, float chargeRate,  char unit) {
         para.param.upperWaringLimitmax = upperLimit[i];
         batteryHealthIsGood[i] = checkBatteryHealthParametersInRange(para);
         if (batteryHealthIsGood[i] == false){
-            printParametersState(parameter.param.paramName, " out of range!\n");
+            printParametersState(para.param.paramName, " out of range!\n");
             return false;
         }
         else
