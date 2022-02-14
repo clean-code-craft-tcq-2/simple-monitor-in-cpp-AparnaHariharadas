@@ -29,8 +29,8 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
     bool batteryHealthIsGood[3] = {true};
     struct batteryManagementClass::parameters para;
     float tempInCelsius;
-    float temperature = (float)s.substr(0, s.find("#"));
-    string unit = s.substr(1, s.find("#"));
+    float temperature = (float)temp.substr(0, temp.find("#"));
+    string unit = temp.substr(1, temp.find("#"));
     /*if (unit == 'F'){
         tempInCelsius = convertFarenheitToCelcius(temp);
         para.param.paramUnit = "Farenheit";
