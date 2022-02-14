@@ -22,11 +22,11 @@ class batteryManagementClass
   float hLimit;
   float actualValue;
  
-   float upperWaringLimitmin;
-   float upperWaringLimitmax;
-   float lowerWaringLimitmin;
-   float lowerWaringLimitmax;
-  
+  float upperWaringLimitmin;
+  float upperWaringLimitmax;
+  float lowerWaringLimitmin;
+  float lowerWaringLimitmax;
+  string paramUnit;
   string paramName;
  };
  struct parameters
