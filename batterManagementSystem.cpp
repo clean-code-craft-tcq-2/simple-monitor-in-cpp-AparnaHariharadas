@@ -8,7 +8,7 @@ void CheckParametersForEarlyWarning(batteryManagementClass::parameters parameter
 {
     if ((parameter.param.actualValue-parameter.param.lowerWaringLimitmin) <= (parameter.param.lowerWaringLimitmax-parameter.param.actualValue))
          printParametersState(parameter.param.paramName, " Lower limit WARNING!\n");
-    if ((parameter.param.actualValue-parameter.param.upperWaringLimitmin) <= (parameter.param.upperWaringLimitmax-parameter.param.actualValue))
+    else if ((parameter.param.actualValue-parameter.param.upperWaringLimitmin) <= (parameter.param.upperWaringLimitmax-parameter.param.actualValue))
         printParametersState(parameter.param.paramName, " Upper limit WARNING!\n");
 }
 
@@ -32,14 +32,11 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
     bool batteryHealthIsGood[3] = {true};
     struct batteryManagementClass::parameters para;
     float tempInCelsius;
-  
-   
     string delim="#";
     float temperature = stof(temp.substr(0, temp.find(delim)));
     temp.erase(0, temp.find (delim) + delim.length());
     string unit =  temp; 
     tempInCelsius = convertTempIfInFarenheit(temperature,unit);
-    cout << temperature << "yes" <<unit << "\n";
     float paramActuals[4] ={tempInCelsius, soc, chargeRate};
     for (int i = 0; i < 3; i++)
     {        
@@ -56,11 +53,10 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
             printParametersState(para.param.paramName, " out of range!\n");
             return false;
         }
-       
-      return true;       
+    
     }
 
- return batteryHealthIsGood;
+ return true;
 }
 
  int main() {
