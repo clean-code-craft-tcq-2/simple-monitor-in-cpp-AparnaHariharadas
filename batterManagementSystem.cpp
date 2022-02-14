@@ -28,7 +28,7 @@ float convertTempIfInFarenheit(float temperature, string unit)
         return temperature;
 }
 
-bool batteryIsOk(stringstream temp, float soc, float chargeRate) {
+bool batteryIsOk(string temp, float soc, float chargeRate) {
     bool batteryHealthIsGood[3] = {true};
     struct batteryManagementClass::parameters para;
     float tempInCelsius;
@@ -36,7 +36,8 @@ bool batteryIsOk(stringstream temp, float soc, float chargeRate) {
    
         //temp.substr(1, temp.find("#"));
     char *ptr; // declare a ptr pointer  
-    ptr = strtok(temp, " # "); // use strtok() function to separate string using comma (,) delimiter.   
+    ptr = strtok(temp, " # "); // use strtok() function to separate string using comma (,) delimiter.
+    int i=0;
     while (ptr != NULL)  
     {  
         string temp[i]= ptr; 
