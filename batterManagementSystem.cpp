@@ -10,15 +10,27 @@ bool checkBatteryHealthParametersInRange(batteryManagementClass::parameters para
         cout << parameter.param.paramName <<" Upper limit WARNING!\n";
       return actualValueOk;
    }
+float convertFarenheitToCelcius(float tempInFarenheit)
+{
+    return ((tempInFarenheit - 32.0)/1.8);
+}
 
-
-bool batteryIsOk(float *value) {
-    bool batteryHealthIsGood[3] = {true};
+bool batteryIsOk(float temp, float soc, floatvchargeRate,  char unit) {
+   bool batteryHealthIsGood[3] = {true};
     struct batteryManagementClass::parameters para;
+    if (unit == "F"){
+            float tempInCelsius = convertFarenheitToCelcius(temp);
+            para.param.paramUnit = "Farenheit";
+    }else if(unit == "C"){
+        float tempInCelsius = temp;
+        para.param.paramUnit = "Celsius";
+    }
+    
+    float paramActuals[4] ={tempInCelsius, soc, chargeRate, unit};
     for (int i = 0; i < 3; i++)
-    {
+    {        
         para.param.paramName = parameterNames[i];
-        para.param.actualValue = value[i];
+        para.param.actualValue = paramActuals[i];
         para.param.lLimit = lowerLimit[i];
         para.param.hLimit = upperLimit[i];
         para.param.lowerWaringLimitmin = lowerLimit[i];
@@ -37,6 +49,6 @@ bool batteryIsOk(float *value) {
 }
 
  int main() {
-    //float values[3] = {25, 70, 0.7};
-    assert(batteryIsOk({25.0, 70.0, 0.7}) == true);
+     assert(batteryIsOk(25.0, 70.0, 0.7, "C") == true);
+     assert(batteryIsOk(25.0, 70.0, 0.7, "F") == false);
 }
