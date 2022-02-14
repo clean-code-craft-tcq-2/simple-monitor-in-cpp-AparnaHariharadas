@@ -35,20 +35,14 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
   
    
         //temp.substr(1, temp.find("#"));
-    char *ptr; // declare a ptr pointer  
-    ptr = strtok(temp, " # "); // use strtok() function to separate string using comma (,) delimiter.
-    int i=0;
-    while (ptr != NULL)  
-    {  
-        string temp[i]= ptr; 
-        ptr = strtok (NULL, "#");  
-        i=i+1;
-    }  
-     float temperature = stof(temp[0]);
-    //stof(temp.substr(0, temp.find("#")));
+    size_t pos = 0;
+    pos = temp.find ("#"));
+    temperature =stof(temp.substr(0, temp.find("#")));
+    temp.erase(0, pos + delim.length()); 
+    unit =  temp; 
     string unit = temp[1];
     tempInCelsius = convertTempIfInFarenheit(temperature,unit);
-     cout << tempInCelsius << unit;
+    cout << tempInCelsius << unit;
     float paramActuals[4] ={tempInCelsius, soc, chargeRate};
     for (int i = 0; i < 3; i++)
     {        
