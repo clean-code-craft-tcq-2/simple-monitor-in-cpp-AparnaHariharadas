@@ -30,7 +30,7 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
     struct batteryManagementClass::parameters para;
     float tempInCelsius;
     //float tempInCelsius = 25.0;
-     string tempInCelsius = stof(temp.substr(0, temp.find("#")));
+     tempInCelsius = stof(temp.substr(0, temp.find("#")));
     string unit = temp.substr(1, temp.find("#"));
     /*if (unit == 'F'){
         tempInCelsius = convertFarenheitToCelcius(temp);
