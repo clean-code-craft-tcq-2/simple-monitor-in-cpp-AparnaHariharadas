@@ -1,6 +1,10 @@
 
+#include <assert.h>
+#include "batterManagementSystem.h"
+ int main() {
      
-/* int main() {
-  assert(batteryIsOk(25, 70, 0.7) == true);
-  assert(batteryIsOk(50, 85, 0) == false);
-}*/
+     assert(batteryIsOk("25.0#C", 70.0, 0.7) == true);
+     assert(batteryIsOk("150.0#F", 70.0, 0.7) == false);
+     assert(batteryIsOk("25.0#C", 78.0, 0.7) == true);
+}
+
