@@ -1,7 +1,3 @@
-#include <assert.h>
-#include <iostream>
-using namespace std;
-
 #define TEMP_UPPER_LIMIT 45.0
 #define TEMP_LOWER_LIMIT 0.0
 #define SOC_UPPER_LIMIT 80.0
@@ -30,8 +26,5 @@ class batteryManagementClass
   string paramUnit;
   string paramName;
  };
-  //struct batteryManagementRange parameter;
-
-  //bool checkBatteryHealthParametersInRange(parameters parameter);
  };
-
+bool batteryIsOk(string temp, float soc, float chargeRate);
