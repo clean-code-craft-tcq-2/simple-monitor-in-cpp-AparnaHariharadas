@@ -1,10 +1,17 @@
 
 #include <assert.h>
 #include "batteryManagementSystem.h"
+
+
+ int testBatterIsOkFunc(string temperature, float soc, float chargeRate string expectedResult){
+  {
+     assert(batteryIsOk(temperature, soc, chargeRate) == expectedResult);
+  }
+  
  int main() {
      
-     assert(batteryIsOk("25.0#C", 70.0, 0.7) == true);
-     assert(batteryIsOk("150.0#F", 70.0, 0.7) == false);
-     assert(batteryIsOk("25.0#C", 78.0, 0.7) == true);
+     testBatterIsOkFunc("25.0#C", 70.0, 0.7, true);
+     testBatterIsOkFunc("150.0#F", 70.0, 0.7, false);
+     testBatterIsOkFunc("25.0#C", 78.0, 0.7, true);
 }
 
