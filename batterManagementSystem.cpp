@@ -1,6 +1,9 @@
 //#include <iostream>
 //using namespace std;
 #include "batterManagementSystem.h"
+float lowerLimit[3] = {TEMP_LOWER_LIMIT, SOC_LOWER_LIMIT, CHARGERATE_LOWER_LIMIT};
+float upperLimit[3] = {TEMP_UPPER_LIMIT, SOC_UPPER_LIMIT, CHARGERATE_UPPER_LIMIT};
+string parameterNames[3] = {"Temperature", "SOC", "ChargeRate"};
 
 void printParametersStatus(string parameterName, string message){
     cout << parameterName << message;
