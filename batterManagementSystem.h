@@ -9,8 +9,9 @@ using namespace std;
 #define CHARGERATE_UPPER_LIMIT 0.8
 #define CHARGERATE_LOWER_LIMIT 0.0
 #define NO_OF_PARAMETERS 3
-float lowerLimit[3] = {0.0,20.0, 0.0};
-float upperLimit[3] = {45.0,80.0, 0.8};
+#define TOLERANCE_MULTIPLICANT 0.05
+float lowerLimit[3] = {TEMP_LOWER_LIMIT, SOC_LOWER_LIMIT, CHARGERATE_LOWER_LIMIT};
+float upperLimit[3] = {TEMP_UPPER_LIMIT, SOC_UPPER_LIMIT, CHARGERATE_UPPER_LIMIT};
 string parameterNames[3] = {"Temperature", "SOC", "ChargeRate"};
 class batteryManagementClass
 {
@@ -29,10 +30,8 @@ class batteryManagementClass
   string paramUnit;
   string paramName;
  };
- struct parameters
- {
-  struct batteryManagementRange param;
-  };
+  //struct batteryManagementRange parameter;
+
   //bool checkBatteryHealthParametersInRange(parameters parameter);
  };
 
