@@ -7,7 +7,7 @@ void printParametersStatus(string parameterName, string message){
 void CheckParametersForEarlyWarning(batteryManagementClass::batteryManagementRange parameter)
 {
     if ((parameter.actualValue - parameter.lLimit) <= (parameter.lowerWaringLimitmax-parameter.actualValue))
-         printParametersStatus(parameter.param.paramName, " Lower limit WARNING!\n");
+         printParametersStatus(parameter.paramName, " Lower limit WARNING!\n");
     else if ((parameter.actualValue-parameter.upperWaringLimitmin) <= (parameter.hLimit-parameter.actualValue))
         printParametersStatus(parameter.paramName, " Upper limit WARNING!\n");
 }
@@ -46,7 +46,7 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
         parameter.hLimit = upperLimit[i];
         parameter.lowerWaringLimitmax = lowerLimit[i] + upperLimit[i] * TOLERANCE_MULTIPLICANT ;
         parameter.upperWaringLimitmin = upperLimit[i] - upperLimit[i] * TOLERANCE_MULTIPLICANT;
-        batteryHealthIsGood[i] = checkBatteryHealthParametersInRange(para);
+        batteryHealthIsGood[i] = checkBatteryHealthParametersInRange(parameter);
         if (batteryHealthIsGood[i] == false){
             printParametersStatus(parameter.paramName, " out of range!\n");
             return false;
