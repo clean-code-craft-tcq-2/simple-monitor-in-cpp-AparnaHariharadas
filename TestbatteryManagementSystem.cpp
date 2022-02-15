@@ -4,7 +4,7 @@
 
 
  int testBatterIsOkFunc(string temperature, float soc, float chargeRate, bool expectedResult){
-  {
+  
      assert(batteryIsOk(temperature, soc, chargeRate) == expectedResult);
   }
   
