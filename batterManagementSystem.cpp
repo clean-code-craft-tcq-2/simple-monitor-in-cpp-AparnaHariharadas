@@ -6,9 +6,11 @@ void printParametersStatus(string parameterName, string message){
 
 void CheckParametersForEarlyWarning(batteryManagementClass::batteryManagementRange parameter)
 {
-    if ((parameter.actualValue - parameter.lLimit) <= (parameter.lowerWaringLimitmax-parameter.actualValue))
+    //if ((parameter.actualValue - parameter.lLimit) <= (parameter.lowerWaringLimitmax-parameter.actualValue))
+    if ((parameter.actualValue - parameter.lowerWaringLimitmax) * (parameter.actualValue - parameter.lLimit) <= 0)
          printParametersStatus(parameter.paramName, " Lower limit WARNING!\n");
-    else if ((parameter.upperWaringLimitmin - parameter.actualValue) <= (parameter.hLimit-parameter.actualValue))
+    //else if ((parameter.upperWaringLimitmin - parameter.actualValue) <= (parameter.hLimit-parameter.actualValue))
+    else if ((parameter.actualValue - parameter.hLimit) * (parameter.actualValue - parameter.hLimit))
         printParametersStatus(parameter.paramName, " Upper limit WARNING!\n");
 }
 
