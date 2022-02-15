@@ -10,7 +10,7 @@ void CheckParametersForEarlyWarning(batteryManagementClass::batteryManagementRan
     if ((parameter.actualValue - parameter.lowerWaringLimitmax) * (parameter.actualValue - parameter.lLimit) <= 0)
          printParametersStatus(parameter.paramName, " Lower limit WARNING!\n");
     //else if ((parameter.upperWaringLimitmin - parameter.actualValue) <= (parameter.hLimit-parameter.actualValue))
-    else if ((parameter.actualValue - parameter.hLimit) * (parameter.actualValue - parameter.hLimit))
+    else if ((parameter.actualValue - parameter.hLimit) * (parameter.actualValue - parameter.upperWaringLimitmin) <= 0)
         printParametersStatus(parameter.paramName, " Upper limit WARNING!\n");
 }
 
