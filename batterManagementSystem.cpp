@@ -1,19 +1,19 @@
 #include "batterManagementSystem.h"
 
-void printParametersState(string parameterName, string message){
+void printParametersStatus(string parameterName, string message){
     cout << parameterName << message;
 }
 
-void CheckParametersForEarlyWarning(batteryManagementClass::parameters parameter)
+void CheckParametersForEarlyWarning(batteryManagementClass::batteryManagementRange parameter)
 {
-    if ((parameter.param.actualValue-parameter.param.lowerWaringLimitmin) <= (parameter.param.lowerWaringLimitmax-parameter.param.actualValue))
-         printParametersState(parameter.param.paramName, " Lower limit WARNING!\n");
-    else if ((parameter.param.actualValue-parameter.param.upperWaringLimitmin) <= (parameter.param.upperWaringLimitmax-parameter.param.actualValue))
-        printParametersState(parameter.param.paramName, " Upper limit WARNING!\n");
+    if ((parameter.actualValue - parameter.lLimit) <= (parameter.lowerWaringLimitmax-parameter.actualValue))
+         printParametersStatus(parameter.param.paramName, " Lower limit WARNING!\n");
+    else if ((parameter.actualValue-parameter.upperWaringLimitmin) <= (parameter.hLimit-parameter.actualValue))
+        printParametersStatus(parameter.paramName, " Upper limit WARNING!\n");
 }
 
-bool checkBatteryHealthParametersInRange(batteryManagementClass::parameters parameter){
-    if(parameter.param.actualValue < parameter.param.lLimit || parameter.param.actualValue > parameter.param.hLimit)
+bool checkBatteryHealthParametersInRange(batteryManagementClass::batteryManagementRange parameter){
+    if(parameter.actualValue < parameter.lLimit || parameter.actualValue > parameter.hLimit)
         return false;
      CheckParametersForEarlyWarning(parameter);
       return true;
@@ -30,7 +30,7 @@ float convertTempIfInFarenheit(float temperature, string unit)
 
 bool batteryIsOk(string temp, float soc, float chargeRate) {
     bool batteryHealthIsGood[3] = {true};
-    struct batteryManagementClass::parameters para;
+    struct batteryManagementClass::batteryManagementRange parameter;
     float tempInCelsius;
     string delim="#";
     float temperature = stof(temp.substr(0, temp.find(delim)));
@@ -38,19 +38,17 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
     string unit =  temp; 
     tempInCelsius = convertTempIfInFarenheit(temperature,unit);
     float paramActuals[4] ={tempInCelsius, soc, chargeRate};
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < NO_OF_PARAMETERS; i++)
     {        
-        para.param.paramName = parameterNames[i];
-        para.param.actualValue = paramActuals[i];
-        para.param.lLimit = lowerLimit[i];
-        para.param.hLimit = upperLimit[i];
-        para.param.lowerWaringLimitmin = lowerLimit[i];
-        para.param.lowerWaringLimitmax = lowerLimit[i] + lowerLimit[i]*0.05 ;
-        para.param.upperWaringLimitmin = upperLimit[i] - upperLimit[i]*0.05;
-        para.param.upperWaringLimitmax = upperLimit[i];
+        parameter.paramName = parameterNames[i];
+        parameter.actualValue = paramActuals[i];
+        parameter.lLimit = lowerLimit[i];
+        parameter.hLimit = upperLimit[i];
+        parameter.lowerWaringLimitmax = lowerLimit[i] + upperLimit[i] * TOLERANCE_MULTIPLICANT ;
+        parameter.upperWaringLimitmin = upperLimit[i] - upperLimit[i] * TOLERANCE_MULTIPLICANT;
         batteryHealthIsGood[i] = checkBatteryHealthParametersInRange(para);
         if (batteryHealthIsGood[i] == false){
-            printParametersState(para.param.paramName, " out of range!\n");
+            printParametersStatus(parameter.paramName, " out of range!\n");
             return false;
         }
     
