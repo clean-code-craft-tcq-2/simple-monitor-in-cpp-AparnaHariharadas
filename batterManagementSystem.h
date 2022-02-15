@@ -8,9 +8,7 @@ using namespace std;
 #define CHARGERATE_LOWER_LIMIT 0.0
 #define NO_OF_PARAMETERS 3
 #define TOLERANCE_MULTIPLICANT 0.05
-float lowerLimit[3] = {TEMP_LOWER_LIMIT, SOC_LOWER_LIMIT, CHARGERATE_LOWER_LIMIT};
-float upperLimit[3] = {TEMP_UPPER_LIMIT, SOC_UPPER_LIMIT, CHARGERATE_UPPER_LIMIT};
-string parameterNames[3] = {"Temperature", "SOC", "ChargeRate"};
+
 class batteryManagementClass
 {
 
