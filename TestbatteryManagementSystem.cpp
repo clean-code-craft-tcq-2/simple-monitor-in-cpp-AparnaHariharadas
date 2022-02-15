@@ -1,6 +1,6 @@
 
 #include <assert.h>
-#include "batterManagementSystem.h"
+#include "batteryManagementSystem.h"
  int main() {
      
      assert(batteryIsOk("25.0#C", 70.0, 0.7) == true);
