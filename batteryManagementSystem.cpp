@@ -35,7 +35,7 @@ float convertTempIfInFarenheit(float temperature, string unit)
 float separateParameterValueAndUnit (string parameter){
     string delim="#";
     float parameterValue = stof(parameter.substr(0, parameter.find(delim)));
-    parameter.erase(0, temp.find (delim) + delim.length());
+    parameter.erase(0, parameter.find (delim) + delim.length());
     string unit =  parameter;
     return (convertTempIfInFarenheit(parameterValue, unit));
 }
@@ -44,11 +44,11 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
     bool batteryHealthIsGood[NO_OF_PARAMETERS] = {true};
     struct batteryManagementClass::batteryManagementRange parameter;
     float tempInCelsius;
-    tempInCelsius = separateParameterValueAndUnit(temperature,unit);
+    tempInCelsius = separateParameterValueAndUnit(temp);
     float paramActuals[NO_OF_PARAMETERS] ={tempInCelsius, soc, chargeRate};
     for (int i = 0; i < NO_OF_PARAMETERS; i++)
     {  
-        findParameterUnit(paramActuals[i])
+        //separateParameterValueAndUnit(paramActuals[i])/*for future use for other parameters
         parameter.paramName = parameterNames[i];
         parameter.actualValue = paramActuals[i];
         parameter.lLimit = lowerLimit[i];
