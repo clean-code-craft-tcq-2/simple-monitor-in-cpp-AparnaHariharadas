@@ -63,5 +63,5 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
      
      assert(batteryIsOk("25.0#C", 70.0, 0.7) == true);
      assert(batteryIsOk("150.0#F", 70.0, 0.7) == false);
-     assert(batteryIsOk("25.0#C", 60.0, 0.7) == true);
+     assert(batteryIsOk("25.0#C", 78.0, 0.7) == true);
 }
