@@ -19,6 +19,7 @@ void CheckParametersForEarlyWarningAndMessage(batteryManagementClass::batteryMan
 bool checkBatteryHealthParametersInRange(batteryManagementClass::batteryManagementRange parameter){
     if(parameter.actualValue < parameter.lLimit || parameter.actualValue > parameter.hLimit)
         return false;
+    CheckParametersForEarlyWarningAndMessage(parameter);
     return true;
    }
 
