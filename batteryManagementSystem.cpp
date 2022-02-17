@@ -10,10 +10,11 @@ void printParameterStatusOnConsole(string parameterName, string message){
 
 string CheckParametersForEarlyWarningAndMessage(batteryManagementClass::batteryManagementRange parameter)
 {
+    string message 
     if ((parameter.actualValue - parameter.lowerWaringLimitmax) * (parameter.actualValue - parameter.lLimit) <= 0)
-         return " Lower limit WARNING!\n";
+         printParameterStatusOnConsole(parameter.paramName," Lower limit WARNING!\n)";
     else if ((parameter.actualValue - parameter.hLimit) * (parameter.actualValue - parameter.upperWaringLimitmin) <= 0)
-        return " Upper limit WARNING!\n";
+        printParameterStatusOnConsole(parameter.paramName, " Upper limit WARNING!\n");
 }
 
 bool checkBatteryHealthParametersInRange(batteryManagementClass::batteryManagementRange parameter){
@@ -44,7 +45,6 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
     struct batteryManagementClass::batteryManagementRange parameter;
     float tempInCelsius;
     tempInCelsius = separateParameterValueAndUnit(temp);
-    string message;
     float paramActuals[NO_OF_PARAMETERS] ={tempInCelsius, soc, chargeRate};
     for (int i = 0; i < NO_OF_PARAMETERS; i++)
     {  
@@ -60,10 +60,10 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
             printParameterStatusOnConsole(parameter.paramName, " out of range!\n");
             return false;
         }
-        else{
+      /*  else{
             message = CheckParametersForEarlyWarningAndMessage(parameter);
             printParameterStatusOnConsole(parameter.paramName, message);
-        }
+        }*/
     }
 
  return true;
