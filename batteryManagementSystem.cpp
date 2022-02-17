@@ -19,8 +19,7 @@ string CheckParametersForEarlyWarningAndMessage(batteryManagementClass::batteryM
 bool checkBatteryHealthParametersInRange(batteryManagementClass::batteryManagementRange parameter){
     if(parameter.actualValue < parameter.lLimit || parameter.actualValue > parameter.hLimit)
         return false;
-     CheckParametersForEarlyWarning(parameter);
-      return true;
+    return true;
    }
 
 
@@ -46,7 +45,6 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
     float tempInCelsius;
     tempInCelsius = separateParameterValueAndUnit(temp);
     float paramActuals[NO_OF_PARAMETERS] ={tempInCelsius, soc, chargeRate};
-    string message;
     for (int i = 0; i < NO_OF_PARAMETERS; i++)
     {  
         //separateParameterValueAndUnit(paramActuals[i])/*for future use for other parameters
