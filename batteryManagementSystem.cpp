@@ -4,16 +4,16 @@ float lowerLimit[3] = {TEMP_LOWER_LIMIT, SOC_LOWER_LIMIT, CHARGERATE_LOWER_LIMIT
 float upperLimit[3] = {TEMP_UPPER_LIMIT, SOC_UPPER_LIMIT, CHARGERATE_UPPER_LIMIT};
 string parameterNames[3] = {"Temperature", "SOC", "ChargeRate"};
 
-void printParameterStatus(string parameterName, string message){
+void printParameterStatusOnConsole(string parameterName, string message){
     cout << parameterName << message;
 }
 
 void CheckParametersForEarlyWarning(batteryManagementClass::batteryManagementRange parameter)
 {
     if ((parameter.actualValue - parameter.lowerWaringLimitmax) * (parameter.actualValue - parameter.lLimit) <= 0)
-         printParameterStatus(parameter.paramName, " Lower limit WARNING!\n");
+         printParameterStatusOnConsole(parameter.paramName, " Lower limit WARNING!\n");
     else if ((parameter.actualValue - parameter.hLimit) * (parameter.actualValue - parameter.upperWaringLimitmin) <= 0)
-        printParameterStatus(parameter.paramName, " Upper limit WARNING!\n");
+        printParameterStatusOnConsole(parameter.paramName, " Upper limit WARNING!\n");
 }
 
 bool checkBatteryHealthParametersInRange(batteryManagementClass::batteryManagementRange parameter){
@@ -24,7 +24,7 @@ bool checkBatteryHealthParametersInRange(batteryManagementClass::batteryManageme
    }
 
 
-float convertTempIfInFarenheit(float temperature, string unit)
+float checkTempIsInFarenheitAndConvert(float temperature, string unit)
 {
     if(unit == "F")
         return ((temperature - 32.0)/1.8);
@@ -37,7 +37,7 @@ float separateParameterValueAndUnit (string parameter){
     float parameterValue = stof(parameter.substr(0, parameter.find(delim)));
     parameter.erase(0, parameter.find (delim) + delim.length());
     string unit =  parameter;
-    return (convertTempIfInFarenheit(parameterValue, unit));
+    return (checkTempIsInFarenheitAndConvert(parameterValue, unit));
 }
 
 bool batteryIsOk(string temp, float soc, float chargeRate) {
@@ -57,7 +57,7 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
         parameter.upperWaringLimitmin = upperLimit[i] - upperLimit[i] * TOLERANCE_MULTIPLICANT;
         batteryHealthIsGood[i] = checkBatteryHealthParametersInRange(parameter);
         if (batteryHealthIsGood[i] == false){
-            printParameterStatus(parameter.paramName, " out of range!\n");
+            printParameterStatusOnConsole(parameter.paramName, " out of range!\n");
             return false;
         }
     
