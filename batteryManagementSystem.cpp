@@ -8,9 +8,8 @@ void printParameterStatusOnConsole(string parameterName, string message){
     cout << parameterName << message;
 }
 
-string CheckParametersForEarlyWarningAndMessage(batteryManagementClass::batteryManagementRange parameter)
+void CheckParametersForEarlyWarningAndMessage(batteryManagementClass::batteryManagementRange parameter)
 {
-    string message 
     if ((parameter.actualValue - parameter.lowerWaringLimitmax) * (parameter.actualValue - parameter.lLimit) <= 0)
          printParameterStatusOnConsole(parameter.paramName," Lower limit WARNING!\n)";
     else if ((parameter.actualValue - parameter.hLimit) * (parameter.actualValue - parameter.upperWaringLimitmin) <= 0)
