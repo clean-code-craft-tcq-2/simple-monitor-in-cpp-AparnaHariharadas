@@ -62,7 +62,8 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
             return false;
         }
         else{
-            printParameterStatusOnConsole(parameter.paramName, CheckParametersForEarlyWarningAndMessage(parameter));    
+            printParameterStatusOnConsole(parameter.paramName, CheckParametersForEarlyWarningAndMessage(parameter));
+        }
     }
 
  return true;
