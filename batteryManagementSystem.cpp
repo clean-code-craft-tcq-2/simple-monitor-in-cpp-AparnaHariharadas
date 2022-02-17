@@ -44,6 +44,7 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
     struct batteryManagementClass::batteryManagementRange parameter;
     float tempInCelsius;
     tempInCelsius = separateParameterValueAndUnit(temp);
+    string message;
     float paramActuals[NO_OF_PARAMETERS] ={tempInCelsius, soc, chargeRate};
     for (int i = 0; i < NO_OF_PARAMETERS; i++)
     {  
@@ -60,7 +61,8 @@ bool batteryIsOk(string temp, float soc, float chargeRate) {
             return false;
         }
         else{
-            printParameterStatusOnConsole(parameter.paramName, CheckParametersForEarlyWarningAndMessage(parameter));
+            message = CheckParametersForEarlyWarningAndMessage(parameter);
+            printParameterStatusOnConsole(parameter.paramName, message);
         }
     }
 
